@@ -1,4 +1,6 @@
 import { createStore } from 'vuex';
+import { getUser } from '@/api';
+import { COMMIT_UPDATE_USERNAME } from '@/common/mutation.types.js';
 
 const store = createStore({
   state() {
@@ -12,19 +14,22 @@ const store = createStore({
     },
   },
   mutations: {
-    updateUsername(state, username) {
+    // se coloca entre corchetes para cambiar el nombre de funcion por el nombre de la constante que se importó
+    [COMMIT_UPDATE_USERNAME](state, username) {
       state.username = username;
     },
   },
   actions: {
-    updateUsername({ commit, state }, username) {
+    async updateUsername({ commit, state }, username) {
       console.log(
         'update username action. anterior: ',
         state.username,
         ', nuevo: ',
         username
       );
-      commit('updateUsername', username);
+      const user = await getUser(1);
+      console.log(user);
+      commit(COMMIT_UPDATE_USERNAME, user.username);
     },
   },
 });
