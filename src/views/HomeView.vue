@@ -3,7 +3,8 @@ import { RouterView, RouterLink } from 'vue-router';
 import InputSearch from '@/components/InputSearch.vue';
 import ProfileCard from '@/components/ProfileCard.vue';
 import ChatItem from '@/components/ChatItem.vue';
-import store from '@/store/store';
+import { mapState, mapGetters } from 'vuex';
+
 
 export default {
   components: {
@@ -15,7 +16,7 @@ export default {
   },
   data() {
     return {
-      store,
+
       search: '',
       profile: {
         username: 'Anne Lopez',
@@ -32,6 +33,11 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapState(['username']),
+    ...mapGetters(['username'])
+  }
+
 
 };
 </script>
@@ -40,7 +46,7 @@ export default {
   <div class="home">
     <aside>
       <InputSearch v-model="search" />
-      <ProfileCard :avatar="profile.avatar" :username="store.username" :status="profile.status" />
+      <ProfileCard :avatar="profile.avatar" :username="$store.getters.firstName(' ')" :status="profile.status" />
       <RouterLink to="/" class="channels-title">Canales
         <Icon icon="carbon:hashtag" />
       </RouterLink>
