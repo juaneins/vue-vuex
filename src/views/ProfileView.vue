@@ -4,7 +4,7 @@ import { mapState, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      username: (state) => state.username
+      username: (state) => state.profile.username
     })
 
   },
