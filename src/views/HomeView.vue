@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     ...mapState(['username']),
-    ...mapGetters(['username'])
+    ...mapGetters(['firstName'])
   }
 
 
@@ -46,7 +46,7 @@ export default {
   <div class="home">
     <aside>
       <InputSearch v-model="search" />
-      <ProfileCard :avatar="profile.avatar" :username="$store.getters.firstName(' ')" :status="profile.status" />
+      <ProfileCard :avatar="profile.avatar" :username="firstName(' ')" :status="profile.status" />
       <RouterLink to="/" class="channels-title">Canales
         <Icon icon="carbon:hashtag" />
       </RouterLink>
