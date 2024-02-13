@@ -24,10 +24,6 @@ const module = {
   },
   actions: {
     async updateUsername({ commit, state, rootState }, username) {
-      console.log('rootState: ', rootState.status);
-      if (state.username) {
-        commit(COMMIT_SET_STATUS, 'active', { root: true });
-      }
       console.log(
         'anterior: ',
         state.username,
@@ -37,6 +33,11 @@ const module = {
       const user = await getUser(1);
       console.log(user);
       commit(COMMIT_UPDATE_USERNAME, user.username);
+
+      if (state.username) {
+        commit(COMMIT_SET_STATUS, 'active', { root: true });
+        console.log('rootState: ', rootState.status);
+      }
     },
   },
 };
