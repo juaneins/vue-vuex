@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import profile from '@/store/modules/profile';
 import channel from '@/store/modules/channel';
 import messages from '@/store/modules/messages';
+import contacts from '@/store/modules/contacts';
 import { COMMIT_SET_STATUS } from '@/common/mutation.types.js';
 
 const store = createStore({
@@ -21,6 +22,7 @@ const store = createStore({
     profile,
     channel,
     messages,
+    contacts,
   },
 });
 
