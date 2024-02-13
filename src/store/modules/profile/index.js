@@ -1,10 +1,14 @@
-import { COMMIT_UPDATE_USERNAME } from '@/common/mutation.types.js';
+import {
+  COMMIT_UPDATE_USERNAME,
+  COMMIT_SET_STATUS,
+} from '@/common/mutation.types.js';
 import { getUser } from '@/api';
 
-const profile = {
+const module = {
+  namespaced: true,
   state() {
     return {
-      username: 'juano',
+      username: '',
     };
   },
   getters: {
@@ -19,9 +23,13 @@ const profile = {
     },
   },
   actions: {
-    async updateUsername({ commit, state }, username) {
+    async updateUsername({ commit, state, rootState }, username) {
+      console.log('rootState: ', rootState.status);
+      if (state.username) {
+        commit(COMMIT_SET_STATUS, 'active', { root: true });
+      }
       console.log(
-        'update username action. anterior: ',
+        'anterior: ',
         state.username,
         ', nuevo: ',
         username
@@ -33,4 +41,4 @@ const profile = {
   },
 };
 
-export default profile;
+export default module;

@@ -5,7 +5,6 @@ import ProfileCard from '@/components/ProfileCard.vue';
 import ChatItem from '@/components/ChatItem.vue';
 import { mapState, mapGetters } from 'vuex';
 
-
 export default {
   components: {
     RouterView,
@@ -20,7 +19,6 @@ export default {
       search: '',
       profile: {
         username: 'Anne Lopez',
-        status: 'active',
         avatar: '/avatars/avatar.jpg'
       },
       channels: [
@@ -34,8 +32,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(['username']),
-    ...mapGetters(['firstName'])
+    ...mapState(['status']),
+    ...mapGetters('profile', ['firstName'])
   }
 
 
@@ -46,7 +44,7 @@ export default {
   <div class="home">
     <aside>
       <InputSearch v-model="search" />
-      <ProfileCard :avatar="profile.avatar" :username="firstName(' ')" :status="profile.status" />
+      <ProfileCard :avatar="profile.avatar" :username="firstName(' ')" :status="status" />
       <RouterLink to="/" class="channels-title">Canales
         <Icon icon="carbon:hashtag" />
       </RouterLink>
