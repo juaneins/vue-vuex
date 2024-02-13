@@ -33,7 +33,8 @@ export default {
   },
   computed: {
     ...mapState(['status']),
-    ...mapGetters('profile', ['firstName'])
+    ...mapGetters('profile', ['firstName']),
+    ...mapGetters('channel', ['getChannels'])
   }
 
 
@@ -49,8 +50,8 @@ export default {
         <Icon icon="carbon:hashtag" />
       </RouterLink>
       <div class="channels">
-        <ChatItem v-for="channel in channels" :key="channel.id" :id="channel.id" :name="channel.name"
-          :messages="channel.messages" />
+        <ChatItem v-for="channel in getChannels(search)" :key="channel.id" :id="channel.id" :name="channel.name"
+          :messages="channel.messages.length" />
       </div>
     </aside>
     <main>
